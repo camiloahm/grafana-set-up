@@ -33,7 +33,9 @@ scrape_configs:
 docker run -d -p 9090:9090 --name prometheus -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest --config.file=/etc/prometheus/prometheus.yml
 
 4. Run Grafana
-``` docker run -d -p 3000:3000 --name grafana -e “GF_SECURITY_ADMIN_PASSWORD=admin_password” -v ~/grafana_db:/var/lib/grafana grafana/grafana:latest ```
+```bash
+docker run -d -p 3000:3000 --name grafana -e “GF_SECURITY_ADMIN_PASSWORD=admin_password” -v ~/grafana_db:/var/lib/grafana grafana/grafana:latest 
+```
 
 5. Run influxdb (optional): If want to store data
 ``` docker run -d --name=influxdb --restart on-failure -p 8086:8086 -v influxdb_data:/var/lib/influxdb influxdb:latest -config /etc/influxdb/influxdb.conf ```
