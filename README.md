@@ -14,13 +14,19 @@ Grafana with Prometheus and InfluxDB
 mkdir -p /etc/prometheus
 vi prometheus.yml # Paste below Lines in prometheus.yml
 
-```# scrape configuration scraping a Node Exporter and the Prometheus # # # #server itself
+```
+# scrape configuration scraping a Node Exporter and the Prometheus server
+# itself.
+
 scrape_configs:
-# Scrape Prometheus itself every 5 seconds.
-- job_name: ‘prometheus’
-scrape_interval: 5s
-static_configs:
-- targets: [‘10.x.x.x:9090’]
+  # Scrape Prometheus itself every 5 seconds.
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.152.162:9090']
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['192.168.152.162:9100']
 ```
 
 3. Run promrtheus
