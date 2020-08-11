@@ -30,7 +30,9 @@ scrape_configs:
 ```
 
 3. Run prometheus
+```bash 
 docker run -d -p 9090:9090 --name prometheus -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest --config.file=/etc/prometheus/prometheus.yml
+```
 
 4. Run Grafana
 ```bash
@@ -38,10 +40,12 @@ docker run -d -p 3000:3000 --name grafana -e “GF_SECURITY_ADMIN_PASSWORD=admin
 ```
 
 5. Run influxdb (optional): If want to store data
-``` docker run -d --name=influxdb --restart on-failure -p 8086:8086 -v influxdb_data:/var/lib/influxdb influxdb:latest -config /etc/influxdb/influxdb.conf ```
+```bash 
+docker run -d --name=influxdb --restart on-failure -p 8086:8086 -v influxdb_data:/var/lib/influxdb influxdb:latest -config /etc/influxdb/influxdb.conf 
+```
 
 Now let them provide the permission to access DB
-```
+```bash
 $docker exec -it influxdb bash
 $influx
 $CREATE DATABASE prometheus
@@ -56,12 +60,15 @@ remote_read:
 ```
 
 6. Run node-exporter on evrey node to monitor
-```docker run -d -p 9100:9100 --name node-exporter -v “/proc:/host/proc” -v “/sys:/host/sys” -v “/:/rootfs” --net=”host” prom/node-exporter:latest --path.procfs /host/proc --path.sysfs /host/proc --collector.filesystem.ignored-mount-points “^/(sys|proc|dev|host|etc )($|/)”```
+```bash
+docker run -d -p 9100:9100 --name node-exporter -v “/proc:/host/proc” -v “/sys:/host/sys” -v “/:/rootfs” --net=”host” prom/node-exporter:latest --path.procfs /host/proc --path.sysfs /host/proc --collector.filesystem.ignored-mount-points “^/(sys|proc|dev|host|etc )($|/)”```
+
 To Add nodes to prometheus (add below configuration parameters)
 
 vim prometheus.yml # Copy line of code given below
 
-```# Scrape the Node Exporter every 5 seconds.
+```bash
+# Scrape the Node Exporter every 5 seconds.
 - job_name: ‘node’
 scrape_interval: 5s
 static_configs:
@@ -74,4 +81,3 @@ Now to set up grafana:
 a. Login to grafana and go to “create a datasource ” link and then choose prometheus -> fill prometheus URL and port (other fill bydefault value)and save it.
 b. Go to + -> choose import and fill dashboard id or JSON file take it from below link
 c. Go to https://grafana.com/grafana/dashboards/ and choose any dashboard type , i choose two https://grafana.com/grafana/dashboards/405 (id will be 405)and https://grafana.com/grafana/dashboards/1860 (id will be 1860)after that save that dashboard
-
