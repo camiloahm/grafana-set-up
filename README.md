@@ -29,7 +29,7 @@ scrape_configs:
       - targets: ['192.168.152.162:9100']
 ```
 
-3. Run promrtheus
+3. Run prometheus
 docker run -d -p 9090:9090 --name prometheus -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest --config.file=/etc/prometheus/prometheus.yml
 
 4. Run Grafana
