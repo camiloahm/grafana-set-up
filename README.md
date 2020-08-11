@@ -4,13 +4,14 @@ Grafana with Prometheus and InfluxDB
 
 
 1. Pull all the packages
-docker pull prom/prometheus:latest
-docker pull prom/node-exporter:latest
-docker pull grafana/grafana:latest
-docker pull influxdb:latest
-Configure Prometheus
+* docker pull prom/prometheus:latest
+* docker pull prom/node-exporter:latest
+* docker pull grafana/grafana:latest
+* docker pull influxdb:latest
 
-2. mkdir -p /etc/prometheus
+2. Configure Prometheus
+
+mkdir -p /etc/prometheus
 vi prometheus.yml # Paste below Lines in prometheus.yml
 
 ```# scrape configuration scraping a Node Exporter and the Prometheus # # # #server itself
