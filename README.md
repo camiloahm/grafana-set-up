@@ -83,7 +83,7 @@ b. Go to + -> choose import and fill dashboard id or JSON file take it from belo
 c. Go to https://grafana.com/grafana/dashboards/ and choose any dashboard type , i choose two https://grafana.com/grafana/dashboards/405 (id will be 405)and https://grafana.com/grafana/dashboards/1860 (id will be 1860)after that save that dashboard
 
 
-#Prometheus grafana and Actuator without storage
+# Prometheus grafana and Actuator without storage
 
 https://medium.com/aeturnuminc/configure-prometheus-and-grafana-in-dockers-ff2a2b51aa1d 
 
